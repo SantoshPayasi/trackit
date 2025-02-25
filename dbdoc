@@ -1,0 +1,6 @@
+UserName : trackit_admin
+Password: spdev
+dbName: trackit_db
+port: 5432
+
+postgresql://trackit_admin:spdev@localhost:5432/trackit_db
