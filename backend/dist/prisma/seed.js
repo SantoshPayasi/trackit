@@ -18,7 +18,7 @@ const path_1 = __importDefault(require("path"));
 const prisma = new client_1.PrismaClient();
 function deleteAllData(orderedFileNames) {
     return __awaiter(this, void 0, void 0, function* () {
-        const modelNames = orderedFileNames.map(filename => {
+        const modelNames = orderedFileNames.map((filename) => {
             const modelName = path_1.default.basename(filename, path_1.default.extname(filename));
             return modelName.charAt(0).toUpperCase() + modelName.slice(1);
         });
@@ -31,16 +31,16 @@ function deleteAllData(orderedFileNames) {
 }
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
-        const directory = path_1.default.join(__dirname, "seedData");
+        const directory = path_1.default.join(__dirname, 'seedData');
         const fileNames = [
-            "team.json",
-            "project.json",
-            "projectTeam.json",
-            "user.json",
-            "task.json",
-            "attachment.json",
-            "comment.json",
-            "taskAssignement.json",
+            'team.json',
+            'project.json',
+            'projectTeam.json',
+            'user.json',
+            'task.json',
+            'attachment.json',
+            'comment.json',
+            'taskAssignement.json',
         ];
         yield deleteAllData(fileNames);
         for (const fileName of fileNames) {
@@ -55,4 +55,8 @@ function main() {
         }
     });
 }
-main().catch(e => { console.log(e); }).finally(() => __awaiter(void 0, void 0, void 0, function* () { return prisma.$disconnect(); }));
+main()
+    .catch((e) => {
+    console.log(e);
+})
+    .finally(() => __awaiter(void 0, void 0, void 0, function* () { return prisma.$disconnect(); }));

@@ -1,12 +1,14 @@
-import express, { urlencoded, Request, Response } from "express"
-import dotenv from "dotenv"
-import cors from "cors"
-import helmet from "helmet"
-import morgan from "morgan";
+import express, { urlencoded, Request, Response } from 'express';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import helmet from 'helmet';
+import morgan from 'morgan';
+import { errorHandler } from './utils/errorHandler.utils';
+import logger from './utils/logger.utils';
 
 // Route Imports
 
-dotenv.config()
+dotenv.config();
 
 const app = express();
 
@@ -20,18 +22,15 @@ app.use(morgan('common'));
 app.use(urlencoded({ extended: false }));
 app.use(cors());
 
-
-
-
-
 app.get('/', (req: Request, res: Response) => {
-    res.send('Hello, world!');
+  logger.info('Initial route is called');
+  res.send('Hello, world!');
 });
 
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 3000;
 
-
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-})
+  console.log(`Server is running on port ${PORT}`);
+});
