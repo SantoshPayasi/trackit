@@ -43,6 +43,7 @@ const helmet_1 = __importDefault(require("helmet"));
 const morgan_1 = __importDefault(require("morgan"));
 const errorHandler_utils_1 = require("./utils/errorHandler.utils");
 const logger_utils_1 = __importDefault(require("./utils/logger.utils"));
+const index_1 = __importDefault(require("./presentation/routes/index"));
 // Route Imports
 dotenv_1.default.config();
 const app = (0, express_1.default)();
@@ -56,6 +57,7 @@ app.get('/', (req, res) => {
     logger_utils_1.default.info('Initial route is called');
     res.send('Hello, world!');
 });
+app.use("/api", index_1.default);
 app.use(errorHandler_utils_1.errorHandler);
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
