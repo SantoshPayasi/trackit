@@ -32,6 +32,7 @@ export default {
         "dark-tertiary": "#3b3d40",
         "blue-primary": "#0275ff",
         "stroke-gradient": "#2d3135",
+        "strok-dark": "#3b3d40",
       },
     },
   },

@@ -19,11 +19,19 @@ const task_repository_1 = __importDefault(require("../../infrastucture/repositor
 class TaskController {
     constructor(taskService) {
         this.taskService = taskService;
+        this.getAllTasks = this.getAllTasks.bind(this);
+        this.createNewTask = this.createNewTask.bind(this);
+        this.updateStatus = this.updateStatus.bind(this);
     }
     getAllTasks(request, response, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const result = yield this.taskService.getAllTasksService();
+                const projectId = Number(request.query.projectId);
+                if (isNaN(projectId)) {
+                    responseHandler_utils_1.default.sendError(response, "Invalid projectId", 400);
+                    return;
+                }
+                const result = yield this.taskService.getAllTasksService(projectId);
                 if (result.success === false) {
                     responseHandler_utils_1.default.sendError(response, result.message, result.status, result.error);
                     return;
@@ -31,7 +39,7 @@ class TaskController {
                 responseHandler_utils_1.default.sendSuccess(response, result.message, result.data, result.status);
             }
             catch (error) {
-                logger_utils_1.default.error("Task Controller:getAllTasks", error === null || error === void 0 ? void 0 : error.message);
+                logger_utils_1.default.error("Task Controller:getAllTasks", error);
                 return next(error);
             }
         });
@@ -48,7 +56,25 @@ class TaskController {
                 responseHandler_utils_1.default.sendSuccess(response, result.message, result.data, result.status);
             }
             catch (error) {
-                logger_utils_1.default.error("Task Controller:createNewTask", error === null || error === void 0 ? void 0 : error.message);
+                logger_utils_1.default.error("Task Controller:createNewTask", error);
+                return next(error);
+            }
+        });
+    }
+    updateStatus(request, response, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const taskId = Number(request.query.id);
+                const status = request.body.status;
+                const result = yield this.taskService.updateStatusService(taskId, status);
+                if (result.success === false) {
+                    responseHandler_utils_1.default.sendError(response, result.message, result.status, result.error);
+                    return;
+                }
+                responseHandler_utils_1.default.sendSuccess(response, result.message, result.data, result.status);
+            }
+            catch (error) {
+                logger_utils_1.default.error("Task Controller:updateStatus", error);
                 return next(error);
             }
         });

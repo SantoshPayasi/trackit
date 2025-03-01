@@ -10,3 +10,4 @@ const router = express_1.default.Router();
 exports.router = router;
 router.get("/", task_controller_1.default.getAllTasks);
 router.post("/create", task_controller_1.default.createNewTask);
+router.patch("/updateStatus", task_controller_1.default.updateStatus);

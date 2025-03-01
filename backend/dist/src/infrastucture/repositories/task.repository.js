@@ -12,9 +12,32 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
 class TaskRepository {
-    findAll() {
+    updateStatus(taskId, status) {
         return __awaiter(this, void 0, void 0, function* () {
-            const tasks = (yield prisma.task.findMany()).map(task => (Object.assign(Object.assign({}, task), { status: task.status, priority: task.priority })));
+            const updatedTask = yield prisma.task.update({
+                where: {
+                    id: Number(taskId)
+                },
+                data: {
+                    status: status
+                }
+            });
+            return updatedTask;
+        });
+    }
+    find(input) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const tasks = (yield prisma.task.findMany({
+                where: {
+                    projectId: input.projectId
+                },
+                include: {
+                    author: true,
+                    assignee: true,
+                    comments: true,
+                    attachments: true
+                }
+            })).map(task => (Object.assign(Object.assign({}, task), { status: task.status, priority: task.priority })));
             return tasks;
         });
     }

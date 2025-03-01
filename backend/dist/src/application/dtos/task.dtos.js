@@ -3,16 +3,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TaskPriorityDto = exports.TaskStatusDto = void 0;
 var TaskStatusDto;
 (function (TaskStatusDto) {
-    TaskStatusDto["TODO"] = "To Do";
-    TaskStatusDto["IN_PROGRESS"] = "In Progress";
-    TaskStatusDto["DONE"] = "Done";
+    TaskStatusDto["ToDo"] = "To Do";
+    TaskStatusDto["InProgress"] = "In Progress";
+    TaskStatusDto["Done"] = "Done";
+    TaskStatusDto["WorkInProgress"] = "Work In Progress";
 })(TaskStatusDto || (exports.TaskStatusDto = TaskStatusDto = {}));
 var TaskPriorityDto;
 (function (TaskPriorityDto) {
-    TaskPriorityDto["LOW"] = "Low";
-    TaskPriorityDto["MEDIUM"] = "Medium";
-    TaskPriorityDto["HIGH"] = "High";
-    TaskPriorityDto["URGENT"] = "Urgent";
+    TaskPriorityDto["Urgent"] = "Urgent";
+    TaskPriorityDto["High"] = "High";
+    TaskPriorityDto["Medium"] = "Medium";
+    TaskPriorityDto["Low"] = "Low";
+    TaskPriorityDto["Backlog"] = "Backlog";
 })(TaskPriorityDto || (exports.TaskPriorityDto = TaskPriorityDto = {}));
 /*
   id             Int               @id @default(autoincrement())

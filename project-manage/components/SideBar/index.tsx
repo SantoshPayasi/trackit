@@ -1,6 +1,7 @@
 "use client"
 import { useAppDispatch, useAppSelector } from '@/app/redux'
 import { setIsSideBarCollapsed } from '@/state'
+import { useGetProjectsQuery } from '@/state/project.api'
 import { AlertCircle, AlertOctagon, AlertTriangle, Briefcase, ChevronDown, ChevronUp, Home, Layers3, LockIcon, LucideIcon, Search, Settings, ShieldAlert, User, Users, X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -11,6 +12,8 @@ import React, { useState } from 'react'
 const SideBar = () => {
     const [showProjects, setShowProjects] = useState(true)
     const [showPriority, setShowPriority] = useState(false)
+
+    const { data: projects } = useGetProjectsQuery();
 
     const dispatch = useAppDispatch();
     const isSideBarCollapsed = useAppSelector(state => state.global.isSideBarCollapsed)
@@ -58,13 +61,20 @@ const SideBar = () => {
                     {showProjects ? (<ChevronUp className='h-5 w-5' />) : (<ChevronDown className='h-5 w-5' />)}
                 </button>
 
+                {/* SHOW PROJECTS LISTS*/}
+                {showProjects && projects?.map((project) => (
+                    <SideBarLinks key={project.id} href={`/projects/${project.id}`} icon={Briefcase} label={project.name} />
+                ))}
+
+
                 {/*Priority LINKS */}
                 <button onClick={() => setShowPriority((prev) => !prev)}
                     className='flex w-full items-center justify-between px-8 py-3 text-gray-500'
                 >
                     <span className=''>Priority</span>
-                    {showProjects ? (<ChevronUp className='h-5 w-5' />) : (<ChevronDown className='h-5 w-5' />)}
+                    {showPriority ? (<ChevronUp className='h-5 w-5' />) : (<ChevronDown className='h-5 w-5' />)}
                 </button>
+
                 {
                     showPriority && (
                         <>

@@ -18,11 +18,14 @@ class TaskService {
     constructor(taskRepository) {
         this.taskRepository = taskRepository;
         this.getAllTasksService = this.getAllTasksService.bind(this);
+        this.createNewTaskService = this.createNewTaskService.bind(this);
+        this.updateStatusService = this.updateStatusService.bind(this);
     }
-    getAllTasksService() {
+    getAllTasksService(projectId) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const tasks = yield this.taskRepository.findAll();
+                const query = { projectId: projectId };
+                const tasks = yield this.taskRepository.find(query);
                 if (!tasks || tasks.length === 0) {
                     return serviceResponse_dtos_1.ServiceResponse.failure("Tasks not found", false, statuscode_utils_1.default.NOT_FOUND);
                 }
@@ -44,6 +47,20 @@ class TaskService {
             }
             catch (error) {
                 return serviceResponse_dtos_1.ServiceResponse.failure("An error occurred while creating task", false, statuscode_utils_1.default.SERVER_ERROR, error);
+            }
+        });
+    }
+    updateStatusService(taskId, status) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const updatedTask = yield this.taskRepository.updateStatus(taskId, status);
+                if (!updatedTask) {
+                    return serviceResponse_dtos_1.ServiceResponse.failure("Task not updated", false, statuscode_utils_1.default.BAD_REQUEST);
+                }
+                return serviceResponse_dtos_1.ServiceResponse.success(true, statuscode_utils_1.default.OK, updatedTask, "Task updated successfully");
+            }
+            catch (error) {
+                return serviceResponse_dtos_1.ServiceResponse.failure("An error occurred while updating task", false, statuscode_utils_1.default.SERVER_ERROR, error);
             }
         });
     }

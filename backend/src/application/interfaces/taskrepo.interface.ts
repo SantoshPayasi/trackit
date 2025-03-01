@@ -1,8 +1,9 @@
-import { CreateTaskRequestDto, TaskDto } from "../dtos/task.dtos"
+import { CreateTaskRequestDto, GetTasksDto, TaskDto } from "../dtos/task.dtos"
 
 interface ITaskRepository {
-    findAll(): Promise<any>
+    find(input: GetTasksDto): Promise<any>
     create(task: CreateTaskRequestDto): Promise<any>
+    updateStatus(taskId: number, status: string): Promise<any>
 }
 
 

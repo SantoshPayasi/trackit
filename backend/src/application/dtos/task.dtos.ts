@@ -11,6 +11,11 @@ interface CreateTaskRequestDto {
     assignedUserId?: number;
 }
 
+interface GetTasksDto {
+    projectId: number
+}
+
+
 interface TaskDto {
     id: number;
     title: string;
@@ -23,26 +28,34 @@ interface TaskDto {
     projectId: number;
     authorUserId: number;
     assignedUserId: number | null;
+    assignee?: any,
+    author?: any,
+    project?: any,
+    taskAssignment?: any,
+    comments?: any,
+    attachments?: any
 }
 
 
 enum TaskStatusDto {
-    TODO = "To Do",
-    IN_PROGRESS = "In Progress",
-    DONE = "Done",
+    ToDo = "To Do",
+    InProgress = "In Progress",
+    Done = "Done",
+    WorkInProgress = "Work In Progress"
 }
 
 enum TaskPriorityDto {
-    LOW = "Low",
-    MEDIUM = "Medium",
-    HIGH = "High",
-    URGENT = "Urgent",
+    Urgent = "Urgent",
+    High = "High",
+    Medium = "Medium",
+    Low = "Low",
+    Backlog = "Backlog"
 }
 
 
 
 
-export { CreateTaskRequestDto, TaskDto, TaskStatusDto, TaskPriorityDto }
+export { CreateTaskRequestDto, TaskDto, TaskStatusDto, TaskPriorityDto, GetTasksDto }
 /*
   id             Int               @id @default(autoincrement())
   title          String

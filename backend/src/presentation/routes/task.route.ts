@@ -8,7 +8,7 @@ router.get("/", taskController.getAllTasks);
 
 router.post("/create", taskController.createNewTask);
 
-
+router.patch("/updateStatus", taskController.updateStatus)
 
 
 export { router }
