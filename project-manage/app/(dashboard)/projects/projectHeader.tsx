@@ -1,8 +1,8 @@
 "use client"
 import React, { useEffect, useState } from 'react'
-import { Tab } from './[id]/page'
+import { Tab } from './[id]'
 import Header from '@/components/Header'
-import { Clock, Filter, Grid3x3, icons, List, LucideTimer, Share2, Table } from 'lucide-react'
+import { Clock, Filter, Grid3x3, List, Share2, Table } from 'lucide-react'
 
 type Props = {
     activeTab: string,
@@ -13,7 +13,7 @@ type Props = {
 
 const ProjectHeader = ({ activeTab, setActiveTab }: Props) => {
 
-    const [isModelNewProjectOpen, setIsModelNewProjectOpen] = useState(false);
+    // const [isModelNewProjectOpen, setIsModelNewProjectOpen] = useState(false);
 
     const TabButtonMaps = {
         [Tab.Board]: {

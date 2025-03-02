@@ -8,11 +8,11 @@ import { EllipsisVertical, MessageSquareMore, Plus } from 'lucide-react';
 import { format } from "date-fns"
 import Image from 'next/image';
 
-type BoardProps = {
+type Props = {
     id: string,
     setIsModelNewTaskOpen: (isOpen: boolean) => void;
 }
-const page = ({ id, setIsModelNewTaskOpen }: BoardProps) => {
+const page = ({ id, setIsModelNewTaskOpen }: Props) => {
     const { data: tasks, isLoading, error } = useGetTasksQuery({ projectId: Number(id) })
 
     const [updateTaskStatus] = useUpdateTaskStatusMutation()

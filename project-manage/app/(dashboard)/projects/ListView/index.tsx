@@ -3,17 +3,15 @@
 import { Task } from '@/app/types/task.types';
 import Header from '@/components/Header';
 import TaskCard from '@/components/TaskCard';
-import { useGetProjectsQuery } from '@/state/project.api';
 import { useGetTasksQuery } from '@/state/task.api';
 import React from 'react'
 
 
 type props = {
-    id: number,
-    setIsModelNewTaskOpen: (isOpen: boolean) => void
+    id: number
 }
 
-const ListView = ({ id, setIsModelNewTaskOpen }: props) => {
+const ListView = ({ id }: props) => {
     const { data: tasks, error, isLoading } = useGetTasksQuery({ projectId: id })
 
     if (isLoading) return <div>Loading...</div>

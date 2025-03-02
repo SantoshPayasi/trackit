@@ -2,8 +2,8 @@
 
 import React, { useState } from 'react'
 import ProjectHeader from '../projectHeader'
-import { useParams, useRouter } from 'next/navigation'
-import Board from "../Board/page"
+import { useParams } from 'next/navigation'
+import Board from "../Board"
 import ListView from '../ListView'
 import TimeLine from '../TimelineView'
 import TableView from "../TableView"
@@ -19,7 +19,7 @@ export const Tab = {
     Table: "Table",
     List: "List"
 }
-const page = () => {
+const Page = () => {
 
     const { id } = useParams<Params>()
     const [activeTab, setActiveTab] = useState(Tab.Board);
@@ -36,7 +36,7 @@ const page = () => {
             )}
             {
                 activeTab == Tab.List && (
-                    <ListView id={Number(id)} setIsModelNewTaskOpen={setIsModelNewTaskOpen} />
+                    <ListView id={Number(id)} />
                 )
             }
             {
@@ -46,11 +46,11 @@ const page = () => {
             }
             {
                 activeTab == Tab.Table && (
-                    <TableView id={Number(id)} setIsModelNewTaskOpen={setIsModelNewTaskOpen} />
+                    <TableView id={Number(id)} />
                 )
             }
         </div>
     )
 }
 
-export default page
+export default Page

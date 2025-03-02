@@ -7,11 +7,10 @@ import { Task } from '@/app/types/task.types'
 import { dataGridClassname } from '@/libs/utils'
 
 type props = {
-    id: number,
-    setIsModelNewTaskOpen: (isOpen: boolean) => void
+    id: number
 }
 
-const index = ({ id, setIsModelNewTaskOpen }: props) => {
+const TableView = ({ id }: props) => {
     const { data: tasks, error, isLoading } = useGetTasksQuery({ projectId: id })
 
     const columns: GridColDef<Task>[] = [
@@ -95,4 +94,4 @@ const index = ({ id, setIsModelNewTaskOpen }: props) => {
     )
 }
 
-export default index
+export default TableView

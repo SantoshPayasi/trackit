@@ -89,6 +89,7 @@
 import { useAppSelector } from '@/app/redux'
 import { Task, Status as TaskStatus } from '@/app/types/task.types'
 import { useGetTasksQuery } from '@/state/task.api'
+import Image from 'next/image'
 import React, { useMemo, useState, useEffect } from 'react'
 
 type TaskTypeItems = "task" | "milestone" | "project"
@@ -392,10 +393,12 @@ const ProjectTimeline = ({ id, setIsModelNewTaskOpen }: Props) => {
                                             {/* Task Label */}
                                             <div className="absolute top-0 left-0 w-48 pr-4 flex items-center h-full">
                                                 <div className="flex items-center">
-                                                    <img
+                                                    <Image
                                                         src={`/${task.avatar}`}
                                                         alt={task.owner}
-                                                        className={`w-6 h-6 rounded-full mr-3 border ${isDarkMode ? 'border-gray-600' : 'border-gray-200'}`}
+                                                        className={`rounded-full mr-3 border ${isDarkMode ? 'border-gray-600' : 'border-gray-200'}`}
+                                                        width={24}
+                                                        height={24}
                                                     />
                                                     <span className={`font-medium truncate ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>
                                                         {task.title}
@@ -461,7 +464,7 @@ const ProjectTimeline = ({ id, setIsModelNewTaskOpen }: Props) => {
                                                         <div className="flex items-center">
                                                             <span className={`w-24 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Owner:</span>
                                                             <div className="flex items-center">
-                                                                <img src={task.avatar} alt={task.owner} className="w-5 h-5 rounded-full mr-1" />
+                                                                <Image src={task.avatar} alt={task.owner} className="w-5 h-5 rounded-full mr-1" width={20} height={20} />
                                                                 <span>{task.owner}</span>
                                                             </div>
                                                         </div>
