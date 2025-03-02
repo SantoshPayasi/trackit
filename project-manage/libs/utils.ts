@@ -1,0 +1,1 @@
+export const dataGridClassname = "border border-gray-200 bg-white shadow dark:border-strok-varf dark:bg-dark-secondry dark:text-gray-200"

@@ -8,6 +8,7 @@ export const taskApiSlice = api.injectEndpoints({
             query: (data: GetTaskRequestDto) => (
                 {
                     url: "tasks",
+                    method: "GET",
                     params: {
                         projectId: data.projectId
                     },

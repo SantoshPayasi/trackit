@@ -4,7 +4,9 @@ import React, { useState } from 'react'
 import ProjectHeader from '../projectHeader'
 import { useParams, useRouter } from 'next/navigation'
 import Board from "../Board/page"
-
+import ListView from '../ListView'
+import TimeLine from '../TimelineView'
+import TableView from "../TableView"
 type Params = {
     id: string
 }
@@ -32,6 +34,21 @@ const page = () => {
             {activeTab == Tab.Board && (
                 <Board id={id} setIsModelNewTaskOpen={setIsModelNewTaskOpen} />
             )}
+            {
+                activeTab == Tab.List && (
+                    <ListView id={Number(id)} setIsModelNewTaskOpen={setIsModelNewTaskOpen} />
+                )
+            }
+            {
+                activeTab == Tab.TimeLine && (
+                    <TimeLine id={Number(id)} setIsModelNewTaskOpen={setIsModelNewTaskOpen} />
+                )
+            }
+            {
+                activeTab == Tab.Table && (
+                    <TableView id={Number(id)} setIsModelNewTaskOpen={setIsModelNewTaskOpen} />
+                )
+            }
         </div>
     )
 }

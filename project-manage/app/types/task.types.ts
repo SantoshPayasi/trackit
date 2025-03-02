@@ -18,7 +18,7 @@ export enum Status {
 
 export interface Attachment {
     id: number,
-    filename: string,
+    fileName: string,
     fileURL: string,
     taskId: number,
     uploadedById: number
@@ -31,12 +31,12 @@ export interface Task {
     status: Status | null;
     priority: Priority | null;
     tags: string | null;
-    startDate: Date | null;
-    dueDate: Date | null;
+    startDate: Date;
+    dueDate: Date;
     projectId: number;
     authorUserId: number;
     assignedUserId: number | null;
-
+    points: number | null;
     author?: User;
     assignee?: User;
     comments?: Comment[];

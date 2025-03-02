@@ -49,7 +49,7 @@ class TaskController {
 
     async updateStatus(request: Request, response: Response, next: NextFunction): Promise<void> {
         try {
-            const taskId = Number(request.query.id);
+            const taskId = Number(request.query.taskId);
             const status = request.body.status;
             const result = await this.taskService.updateStatusService(taskId, status);
             if (result.success === false) {

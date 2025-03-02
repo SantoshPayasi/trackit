@@ -64,7 +64,7 @@ class TaskController {
     updateStatus(request, response, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const taskId = Number(request.query.id);
+                const taskId = Number(request.query.taskId);
                 const status = request.body.status;
                 const result = yield this.taskService.updateStatusService(taskId, status);
                 if (result.success === false) {
