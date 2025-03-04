@@ -9,3 +9,11 @@ export interface Project {
     tasks?: Task[]
     projectTeams: any[]
 }
+
+
+export interface CreateProjectRequestDto {
+    name: string,
+    startDate: string,
+    endDate: string,
+    description: string
+}

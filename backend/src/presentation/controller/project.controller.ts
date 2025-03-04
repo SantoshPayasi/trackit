@@ -7,6 +7,7 @@ import logger from "../../utils/logger.utils";
 class ProjectController {
     constructor(private projectService: ProjectService) {
         this.getAllProjects = this.getAllProjects.bind(this);
+        this.createNewProject = this.createNewProject.bind(this)
     }
 
     async getAllProjects(request: Request, response: Response, next: NextFunction): Promise<any> {

@@ -3,3 +3,9 @@ export enum Tags {
     Tasks = "Tasks"
 }
 
+export const Tab = {
+    Board: "Board",
+    TimeLine: "TimeLine",
+    Table: "Table",
+    List: "List"
+}

@@ -4,7 +4,8 @@ import { useGetTasksQuery } from '@/state/task.api'
 import React from 'react'
 import { DataGrid, GridColDef } from "@mui/x-data-grid"
 import { Task } from '@/app/types/task.types'
-import { dataGridClassname } from '@/libs/utils'
+import { dataGridClassname, dataGridSxStyles } from '@/libs/utils'
+import { useSelector } from 'react-redux'
 
 type props = {
     id: number
@@ -12,7 +13,7 @@ type props = {
 
 const TableView = ({ id }: props) => {
     const { data: tasks, error, isLoading } = useGetTasksQuery({ projectId: id })
-
+    const isDarkMode = useSelector((state: any) => state.global.isDarkMode)
     const columns: GridColDef<Task>[] = [
         {
             field: "id",
@@ -80,7 +81,7 @@ const TableView = ({ id }: props) => {
     if (error) return <div>Error occured during fetching the tasks</div>
 
     return (
-        <div className='h-[540px] w-full px-4 pb-8 xl:px-6'>
+        <div className=' w-full px-4 pb-8 xl:px-6'>
             <div className='pt-5'>
                 <Header name="Table" />
             </div>
@@ -88,6 +89,7 @@ const TableView = ({ id }: props) => {
                 rows={tasks}
                 columns={columns}
                 className={dataGridClassname}
+                sx={dataGridSxStyles(isDarkMode)}
             />
 
         </div>

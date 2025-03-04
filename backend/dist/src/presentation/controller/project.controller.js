@@ -20,6 +20,7 @@ class ProjectController {
     constructor(projectService) {
         this.projectService = projectService;
         this.getAllProjects = this.getAllProjects.bind(this);
+        this.createNewProject = this.createNewProject.bind(this);
     }
     getAllProjects(request, response, next) {
         return __awaiter(this, void 0, void 0, function* () {

@@ -1,4 +1,4 @@
-import { Project } from "@/app/types/project.types";
+import { CreateProjectRequestDto, Project } from "@/app/types/project.types";
 import { api } from "./api";
 import { Tags } from "@/constants";
 
@@ -12,12 +12,14 @@ export const projectApiSlice = api.injectEndpoints({
             }
         }),
 
-        createProject: build.mutation<Project, Partial<Project>>({
+        createProject: build.mutation<Project, CreateProjectRequestDto>({
             query: (project) => (
                 {
                     url: "projects/create",
                     method: "POST",
-                    body: project
+                    body: {
+                        projectInput: project
+                    }
                 }
             ),
             invalidatesTags: [Tags.Projects]
